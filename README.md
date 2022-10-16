@@ -6,7 +6,7 @@ It utilizes simple Element creation & DOM addition, alongside a timer, and some 
 
 HTML, CSS, JavaScript
 
-Screenshots:
+Screenshot:
 
 ![slow paper screenshot](https://www.dalesmith.com/temp/slow-paper_screenshot.png)
  
