@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=League+Script&family=Mrs+Saint+Delafield&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Mrs Saint Delafield', cursive;
+        font-family: 'League Script', cursive;
+        margin: 0;
+        padding: 0;
+      }
+      #container {
+        position: relative;
+      }
+      #holes {
+        position: relative;
+      }
+      #text {
+        position: absolute;
+        left: 300px;
+        top: 200px;
+        z-index: 100;
+      }
+      .textContent {
+        font-size: 200px;
+      }
+      @media only screen and (max-width: 600px) {
+        #text {
+        position: absolute;
+        left: 100px;
+        top: 100px;
+        z-index: 100;
+      }
+      .textContent {
+        font-size: 80px;
+      }
+      }
+      .row {
+        display: inline-flex;
+        height: 25px;
+        margin: -10px;
+        padding: 0;
+        width: 100%;
+      }
+      .left {
+        border-bottom: 1px solid blue;
+        border-right: 1px solid red;
+        /* height: 20px; */
+        margin: 0;
+        padding: 0;
+        width: 15%;
+      }
+      .left-hole {
+        border-bottom: 1px solid blue;
+        border-right: 1px solid red;
+        /* height: 20px; */
+        margin: 0;
+        padding: 0;
+        width: 15%;
+      }
+      .hole {
+        background-color: #eee;
+        border: 1px solid #333;
+        border-radius: 50%;
+        height: 25px;
+        left: 50px;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 130px;
+        width: 25px;
+        z-index: 1000;
+      }
+      @media only screen and (max-width: 600px) {
+        .hole {
+          left: 15px;
+        }
+      }
+      .right {
+        border-bottom: 1px solid blue;
+        border-left: 1px solid red;
+        /* height: 20px; */
+        margin: 0;
+        padding: 0;
+        width: 85%;
+      }
+      .left-top {
+        border-right: 1px solid red;
+        /* height: 20px; */
+        margin: 0;
+        padding: 0;
+        width: 15%;
+      }
+      .right-top {
+        border-left: 1px solid red;
+        /* height: 20px; */
+        margin: 0;
+        padding: 0;
+        width: 85%;
+      }
+    </style>
+    <title>Slow Paper</title>
+  </head>
+  <body>
+    <div id="text"></div>
+    <div id="holes"></div>
+    <div id="container"></div>
+  </body>
+  <script>
+    const container = document.getElementById('container');
+    const holes = document.getElementById('holes');
+    const text = document.getElementById('text');
+    const addTop = () => {
+      const newRow = document.createElement('div');
+      newRow.classList.add('row');
+      const newLeftTop = document.createElement('div');
+      newLeftTop.classList.add('left-top');
+      newRow.appendChild(newLeftTop);
+      const newRightTop = document.createElement('div');
+      newRightTop.classList.add('right-top');
+      newRow.appendChild(newRightTop);
+      container.appendChild(newRow);
+    };
+    const addMiddle = () => {
+      const newRow = document.createElement('div');
+      newRow.classList.add('row');
+      const newLeft = document.createElement('div');
+      newLeft.classList.add('left');
+      newRow.appendChild(newLeft);
+      const newRight = document.createElement('div');
+      newRight.classList.add('right');
+      newRow.appendChild(newRight);
+      container.appendChild(newRow);
+    };
+    const addHole = (x) => {
+      const holeTops = [130, 460, 790];
+      const newHole = document.createElement('div');
+      newHole.classList.add('hole');
+      newHole.style.top = `${holeTops[x]}px`;
+      holes.appendChild(newHole);
+    };
+    const addText = (x) => {
+      const newText = document.createElement('div');
+      newText.classList.add('textContent');
+      newText.innerText = x;
+      text.appendChild(newText);
+    };
+
+    const build = () => {
+      let x = 0;
+      let timer = setTimeout(paper, 3000);
+      function paper() {
+        if (x < 5) {
+          addTop();
+        } else if (x < 47) {
+          addMiddle();
+        } else if (x < 64) {
+          addHole(0);
+          addHole(1);
+          addHole(2);
+        } else if (x === 65) {
+          addText('Slow Paper');
+          endTimer();
+          return;
+        }
+        x++;
+        console.log(x);
+        timer = setTimeout(paper, 3000);
+      }
+
+      function endTimer() {
+        clearTimeout(timer);
+      }
+    };
+
+    build();
+  </script>
+</html>
