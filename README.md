@@ -4,6 +4,10 @@ A simple code doodle, fizz buzz variation & somewhat meta art project (and place
 
 It utilizes simple Element creation & DOM addition, alongside a timer, and some basic CSS styling. It's responsive, as well.
 
- HTML, CSS, JavaScript
+HTML, CSS, JavaScript
+
+Screenshots:
+
+![slow paper screenshot](https://www.dalesmith.com/temp/slow-paper_screenshot.png)
  
- [View Demo](https://www.dalesmith.com)
+[View Demo](https://www.dalesmith.com)
